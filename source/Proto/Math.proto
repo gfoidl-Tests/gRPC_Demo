@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package MathEndpoint;
+
+service Calc {
+    rpc Add (IntBinaryOperationRequest) returns (IntBinaryOperationResponse) {}
+}
+
+message IntBinaryOperationRequest {
+    int32 a = 1;
+    int32 b = 2;
+}
+
+message IntBinaryOperationResponse {
+    int32 c = 1;
+}

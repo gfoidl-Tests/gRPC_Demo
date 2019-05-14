@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Google.Protobuf" Version="3.8.0-rc.1" />
+        <PackageReference Include="Grpc.AspNetCore.Server" Version="0.1.21-dev201905140701" />
+        <PackageReference Include="Grpc.Core" Version="1.22.0-dev201905140957" />
+        <PackageReference Include="Grpc.Tools" Version="1.22.0-dev201905140957" PrivateAssets="all" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf Include="..\Proto\*.proto" GrpcServices="Server" />
+        <Content Include="@(Protobuf)" LinkBase="" />
+    </ItemGroup>
+
+</Project>
