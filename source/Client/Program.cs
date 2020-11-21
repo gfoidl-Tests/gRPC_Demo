@@ -1,38 +1,26 @@
-﻿using System;
+using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
 using Grpc.Core;
+using Grpc.Net.Client;
+using MathEndpoint;
 
-namespace Client
+Console.WriteLine("Waiting for server to start...any key to continue");
+Console.ReadKey();
+
+using GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001");
+Calc.CalcClient client = new(channel);
+
+try
 {
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.WriteLine("Waiting for server to start...any key to continue");
-            Console.ReadKey();
+    IntBinaryOperationResponse response = await client.AddAsync(new IntBinaryOperationRequest { A = 3, B = 4 });
 
-            var channel = new Channel("localhost:50051", ChannelCredentials.Insecure);
-            var client = new MathEndpoint.Calc.CalcClient(channel);
-
-            try
-            {
-                var response = await client.AddAsync(new MathEndpoint.IntBinaryOperationRequest { A = 3, B = 4 });
-
-                Console.WriteLine(response.C);
-            }
-            catch (RpcException ex) when (!Debugger.IsAttached)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Error.WriteLine(ex.Message);
-                Console.ResetColor();
-            }
-            finally
-            {
-                await channel.ShutdownAsync();
-            }
-
-            Console.WriteLine("\nEnd.");
-        }
-    }
+    Console.WriteLine(response.C);
 }
+catch (RpcException ex) when (!Debugger.IsAttached)
+{
+    Console.ForegroundColor = ConsoleColor.Red;
+    Console.Error.WriteLine(ex.Message);
+    Console.ResetColor();
+}
+
+Console.WriteLine("\nEnd.");

@@ -1,10 +1,9 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Server.Abstractions;
-using Server.Services;
+using Server.Math;
 
 namespace Server
 {
@@ -12,7 +11,7 @@ namespace Server
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IMathService>(new MathService());
+            services.AddSingleton<IMathService, MathService>();
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddGrpc();
         }

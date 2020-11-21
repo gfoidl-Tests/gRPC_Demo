@@ -1,9 +1,6 @@
-﻿using System;
 using MediatR;
-using Server.Abstractions;
-using Server.Operations;
 
-namespace Server.Handlers
+namespace Server.Math
 {
     // Only sequential, so use base class instead of interface IRequestHandler<TRequest, TResponse>
     // https://github.com/jbogard/MediatR/wiki#request-types
@@ -11,8 +8,7 @@ namespace Server.Handlers
     {
         private readonly IMathService _mathService;
         //---------------------------------------------------------------------
-        public AddHandler(IMathService mathService)
-            => _mathService = mathService ?? throw new ArgumentNullException(nameof(mathService));
+        public AddHandler(IMathService mathService) => _mathService = mathService;
         //---------------------------------------------------------------------
         protected override int Handle(AddOperation request) => _mathService.Add(request.A, request.B);
     }

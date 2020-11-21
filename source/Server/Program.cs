@@ -1,29 +1,27 @@
-﻿using System.Threading.Tasks;
+//#define USE_CUSTOM_KESTREL_PORT
+//-----------------------------------------------------------------------------
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
+using Server;
 
-namespace Server
-{
-    public class Program
-    {
-        public static Task Main(string[] args) => CreateHost(args).RunAsync();
-        //---------------------------------------------------------------------
-        public static IHost CreateHost(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+await CreateHostBuilder(args).RunAsync();
+//-----------------------------------------------------------------------------
+static IHost CreateHostBuilder(string[] args)
+    => Host.CreateDefaultBuilder(args)
+        .ConfigureWebHostDefaults(webBuilder =>
+        {
+            webBuilder
+#if USE_CUSTOM_KESTREL_PORT
+                .ConfigureKestrel(options =>
                 {
-                    webBuilder
-                        .ConfigureKestrel(options =>
-                        {
-                            options.Limits.MinRequestBodyDataRate = null;
-                            options.ListenLocalhost(50051, listenOptions =>
-                            {
-                                listenOptions.Protocols = HttpProtocols.Http2;
-                            });
-                        })
-                        .UseStartup<Startup>();
+                    options.Limits.MinRequestBodyDataRate = null;
+                    options.ListenLocalhost(50051, listenOptions =>
+                    {
+                        listenOptions.Protocols = HttpProtocols.Http2;
+                    });
                 })
-                .Build();
-    }
-}
+#endif
+                .UseStartup<Startup>();
+        })
+        .Build();

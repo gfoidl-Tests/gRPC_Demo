@@ -1,6 +1,4 @@
-﻿using Server.Abstractions;
-
-namespace Server.Services
+namespace Server.Math
 {
     public class MathService : IMathService
     {

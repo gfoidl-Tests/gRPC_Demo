@@ -1,4 +1,4 @@
-﻿namespace Server.Abstractions
+namespace Server.Math
 {
     public interface IMathService
     {

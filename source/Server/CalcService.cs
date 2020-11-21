@@ -1,23 +1,22 @@
-﻿using System;
 using System.Threading.Tasks;
 using Grpc.Core;
 using MathEndpoint;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Server.Operations;
+using Server.Math;
 
 namespace Server
 {
     public class CalcService : MathEndpoint.Calc.CalcBase
     {
-        private readonly ILogger   _logger;
         private readonly IMediator _mediator;
+        private readonly ILogger   _logger;
         //---------------------------------------------------------------------
-        public CalcService(ILogger<CalcService> logger, IMediator mediator)
+        public CalcService(IMediator mediator, ILogger<CalcService> logger)
         {
-            _logger   = logger   ?? throw new ArgumentNullException(nameof(logger));
-            _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+            _mediator = mediator;
+            _logger   = logger;
         }
         //---------------------------------------------------------------------
         public override async Task<IntBinaryOperationResponse> Add(IntBinaryOperationRequest request, ServerCallContext context)

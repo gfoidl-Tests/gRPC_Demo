@@ -1,8 +1,8 @@
-﻿using MediatR;
+using MediatR;
 
-namespace Server.Operations
+namespace Server.Math
 {
-    public class AddOperation : IRequest<int>
+    public readonly struct AddOperation : IRequest<int>
     {
         public int A { get; }
         public int B { get; }
