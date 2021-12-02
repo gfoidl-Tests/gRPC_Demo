@@ -1,14 +1,15 @@
 using System.Threading.Tasks;
+using Contract;
 using Grpc.Core;
-using MathEndpoint;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using ProtoBuf.Grpc;
 using Server.Math;
 
 namespace Server
 {
-    public class CalcService : MathEndpoint.Calc.CalcBase
+    public class CalcService : ICalcService
     {
         private readonly IMediator _mediator;
         private readonly ILogger   _logger;
@@ -19,11 +20,11 @@ namespace Server
             _logger   = logger;
         }
         //---------------------------------------------------------------------
-        public override async Task<IntBinaryOperationResponse> Add(IntBinaryOperationRequest request, ServerCallContext context)
+        public async Task<IntBinaryOperationResponse> AddAsync(IntBinaryOperationRequest request, CallContext context = default)
         {
-            HttpContext httpContext = context.GetHttpContext();
+            HttpContext? httpContext = context.ServerCallContext?.GetHttpContext();
 
-            _logger.LogInformation($"Connection id: {httpContext.Connection.Id}");
+            _logger.LogInformation($"Connection id: {httpContext?.Connection.Id}");
             _logger.LogInformation($"Handling request for {request.A} + {request.B}");
 
             int sum = await _mediator.Send(new AddOperation(request.A, request.B));

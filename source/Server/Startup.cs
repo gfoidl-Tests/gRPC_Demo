@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProtoBuf.Grpc.Server;
 using Server.Math;
 
 namespace Server
@@ -13,7 +14,7 @@ namespace Server
         {
             services.AddSingleton<IMathService, MathService>();
             services.AddMediatR(typeof(Startup).Assembly);
-            services.AddGrpc();
+            services.AddCodeFirstGrpc();
         }
         //---------------------------------------------------------------------
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

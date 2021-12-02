@@ -2,16 +2,16 @@
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+        <PackageReference Include="protobuf-net.Grpc.AspNetCore" Version="1.0.152" />
         <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Protobuf Include="..\Proto\*.proto" GrpcServices="Server" />
-        <Content Include="@(Protobuf)" LinkBase="" />
+        <ProjectReference Include="..\Contract\Contract.csproj" />
     </ItemGroup>
 
 </Project>
