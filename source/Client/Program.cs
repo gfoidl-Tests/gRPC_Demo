@@ -1,4 +1,3 @@
-using System;
 using System.Diagnostics;
 using Grpc.Core;
 using Grpc.Net.Client;
@@ -7,8 +6,8 @@ using MathEndpoint;
 Console.WriteLine("Waiting for server to start...any key to continue");
 Console.ReadKey();
 
-using GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001");
-//using GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5000");
+//using GrpcChannel channel = GrpcChannel.ForAddress("https://localhost:5001");
+using GrpcChannel channel = GrpcChannel.ForAddress("http://localhost:5000");
 
 Calc.CalcClient client = new(channel);
 

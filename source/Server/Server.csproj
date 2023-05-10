@@ -1,12 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
+        <UseArtifactsOutput>true</UseArtifactsOutput>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <PublishAot>true</PublishAot>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Grpc.AspNetCore" Version="2.53.0" />
+        <PackageReference Include="Mediator.Abstractions" Version="2.1.1" />
+        <PackageReference Include="Mediator.SourceGenerator" Version="2.1.1">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>

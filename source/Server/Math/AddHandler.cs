@@ -1,15 +1,18 @@
-using MediatR;
+using System.Threading;
+using System.Threading.Tasks;
+using Mediator;
 
-namespace Server.Math
+namespace Server.Math;
+
+public class AddHandler : IRequestHandler<AddOperation, int>
 {
-    // Only sequential, so use base class instead of interface IRequestHandler<TRequest, TResponse>
-    // https://github.com/jbogard/MediatR/wiki#request-types
-    public class AddHandler : RequestHandler<AddOperation, int>
+    private readonly IMathService _mathService;
+    //-------------------------------------------------------------------------
+    public AddHandler(IMathService mathService) => _mathService = mathService;
+    //-------------------------------------------------------------------------
+    public ValueTask<int> Handle(AddOperation request, CancellationToken cancellationToken)
     {
-        private readonly IMathService _mathService;
-        //---------------------------------------------------------------------
-        public AddHandler(IMathService mathService) => _mathService = mathService;
-        //---------------------------------------------------------------------
-        protected override int Handle(AddOperation request) => _mathService.Add(request.A, request.B);
+        int result = _mathService.Add(request.A, request.B);
+        return ValueTask.FromResult(result);
     }
 }
