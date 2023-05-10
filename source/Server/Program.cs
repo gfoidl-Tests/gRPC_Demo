@@ -16,7 +16,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddConsole();
 
 builder.Services.AddSingleton<IMathService, MathService>();
-builder.Services.AddMediatR(mediatR => mediatR.RegisterServicesFromAssemblyContaining<Program>());
+builder.Services.AddMediator();
 builder.Services.AddGrpc();
 
 #if USE_CUSTOM_KESTREL_PORT

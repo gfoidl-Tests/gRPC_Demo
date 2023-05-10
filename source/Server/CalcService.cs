@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Grpc.Core;
 using MathEndpoint;
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Server.Math;

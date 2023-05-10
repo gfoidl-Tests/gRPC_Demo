@@ -1,6 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Mediator;
 
 namespace Server.Math;
 
@@ -10,9 +10,9 @@ public class AddHandler : IRequestHandler<AddOperation, int>
     //-------------------------------------------------------------------------
     public AddHandler(IMathService mathService) => _mathService = mathService;
     //-------------------------------------------------------------------------
-    public Task<int> Handle(AddOperation request, CancellationToken cancellationToken)
+    public ValueTask<int> Handle(AddOperation request, CancellationToken cancellationToken)
     {
         int result = _mathService.Add(request.A, request.B);
-        return Task.FromResult(result);
+        return ValueTask.FromResult(result);
     }
 }
