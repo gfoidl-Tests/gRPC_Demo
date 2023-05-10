@@ -2,13 +2,15 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
+        <UseArtifactsOutput>true</UseArtifactsOutput>
+        <PublishAot>true</PublishAot>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Google.Protobuf" Version="3.19.1" />
-        <PackageReference Include="Grpc.Net.Client" Version="2.40.0" />
-        <PackageReference Include="Grpc.Tools" Version="2.42.0" PrivateAssets="all" />
+        <PackageReference Include="Google.Protobuf" Version="3.23.0" />
+        <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+        <PackageReference Include="Grpc.Tools" Version="2.54.0" PrivateAssets="all" />
     </ItemGroup>
 
     <ItemGroup>

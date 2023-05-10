@@ -1,7 +1,6 @@
-namespace Server.Math
+namespace Server.Math;
+
+public class MathService : IMathService
 {
-    public class MathService : IMathService
-    {
-        public int Add(int a, int b) => a + b;
-    }
+    public int Add(int a, int b) => a + b;
 }

@@ -1,7 +1,6 @@
-namespace Server.Math
+namespace Server.Math;
+
+public interface IMathService
 {
-    public interface IMathService
-    {
-        int Add(int a, int b);
-    }
+    int Add(int a, int b);
 }
