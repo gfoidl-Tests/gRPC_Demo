@@ -28,5 +28,6 @@ builder.WebHost.ConfigureKestrel(options =>
 WebApplication app = builder.Build();
 
 app.MapGrpcService<CalcService>();
+app.MapGrpcService<CountService>();
 
 await app.RunAsync();

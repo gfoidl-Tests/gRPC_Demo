@@ -17,7 +17,7 @@
 
     <ItemGroup>
         <Protobuf Include="..\Proto\*.proto" GrpcServices="Server" />
-        <Content Include="@(Protobuf)" LinkBase="" />
+        <Content Include="@(Protobuf)" LinkBase="protos" />
     </ItemGroup>
 
 </Project>
