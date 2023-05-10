@@ -20,9 +20,7 @@ public partial class CalcService : Calc.CalcBase
     {
         if (_logger.IsEnabled(LogLevel.Information))
         {
-            HttpContext httpContext = context.GetHttpContext();
-
-            Log.Request(_logger, httpContext.Connection.Id, request.A, request.B);
+            Log.Request(_logger, context, '+', request);
         }
 
         int sum = await _mediator.Send(new AddOperation(request.A, request.B));
@@ -30,11 +28,29 @@ public partial class CalcService : Calc.CalcBase
         return new IntBinaryOperationResponse { C = sum };
     }
     //-------------------------------------------------------------------------
+    public override async Task<IntBinaryOperationResponse> Mul(IntBinaryOperationRequest request, ServerCallContext context)
+    {
+        if (_logger.IsEnabled(LogLevel.Information))
+        {
+            Log.Request(_logger, context, '*', request);
+        }
+
+        int result = await _mediator.Send(new MulOperation(request.A, request.B));
+
+        return new IntBinaryOperationResponse { C = result };
+    }
+    //-------------------------------------------------------------------------
     private static partial class Log
     {
         [LoggerMessage(
             Level = LogLevel.Information,
-            Message = "Connection id: {ConnectionId}, handling request for {A} + {B}")]
-        public static partial void Request(ILogger logger, string connectionId, int a, int b);
+            Message = "Connection id: {ConnectionId}, handling request for {A} {Operation} {B}")]
+        private static partial void Request(ILogger logger, string connectionId, int a, char operation, int b);
+
+        public static void Request(ILogger logger, ServerCallContext context, char operation, IntBinaryOperationRequest request)
+        {
+            HttpContext httpContext = context.GetHttpContext();
+            Request(logger, httpContext.Connection.Id, request.A, operation, request.B);
+        }
     }
 }

@@ -4,6 +4,7 @@ package MathEndpoint;
 
 service Calc {
     rpc Add (IntBinaryOperationRequest) returns (IntBinaryOperationResponse);
+    rpc Mul (IntBinaryOperationRequest) returns (IntBinaryOperationResponse);
 }
 
 message IntBinaryOperationRequest {

@@ -14,7 +14,9 @@ Calc.CalcClient client = new(channel);
 try
 {
     IntBinaryOperationResponse response = await client.AddAsync(new IntBinaryOperationRequest { A = 3, B = 4 });
+    Console.WriteLine(response.C);
 
+    response = await client.MulAsync(new IntBinaryOperationRequest { A = 5, B = 4 });
     Console.WriteLine(response.C);
 }
 catch (RpcException ex) when (!Debugger.IsAttached)
