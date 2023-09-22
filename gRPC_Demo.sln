@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28803.452
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{643CCDBC-047E-4D85-9104-57692B77C31F}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,9 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{643CCDBC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{C5C8A993-5D44-4457-8925-7CA299AD366D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "source\Server\Server.csproj", "{20DA9FA2-E7D5-4053-9448-7FAFBD4F1A1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "source\Server\Server.csproj", "{20DA9FA2-E7D5-4053-9448-7FAFBD4F1A1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "source\Client\Client.csproj", "{13AEDD95-5DFF-4010-80B5-7E513A222B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "source\Client\Client.csproj", "{13AEDD95-5DFF-4010-80B5-7E513A222B22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4BB410C6-B8AF-4626-A666-AE96738320F7}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
